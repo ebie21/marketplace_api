@@ -14,18 +14,10 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleProductNotFound(ProductNotFoundException e) {
-        Map<String, String> response = new HashMap<>();
-        response.put("message", e.getMessage());
-
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleUserNotFound(UserNotFoundException e) {
-        Map<String, String> response = new HashMap<>();
-        response.put("message", e.getMessage());
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-    }
+   @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Map<String,Object>> handleResourceNotFoundException(ResourceNotFoundException ex){
+       Map<String,Object> map = new HashMap<>();
+       map.put("message", ex.getMessage());
+       return new ResponseEntity<>(map, HttpStatus.NOT_FOUND);
+   }
 }
