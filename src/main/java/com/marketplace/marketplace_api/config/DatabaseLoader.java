@@ -32,7 +32,7 @@ public class DatabaseLoader {
                 product.setPrice(260.00);
                 product.setDescription("Headphones product");
                 product.setStock(60);
-                product.setSeller(savedSeller);
+                product.setUser(savedSeller);
 
                 // save the product
                 productRepository.save(product);

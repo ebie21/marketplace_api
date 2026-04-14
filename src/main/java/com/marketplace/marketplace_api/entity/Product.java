@@ -13,17 +13,14 @@ public class Product {
     private double price;
     private int stock;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User seller;
+    private User user;
 
-    public User getSeller() {
-        return seller;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    Category category;
 
-    public void setSeller(User seller) {
-        this.seller = seller;
-    }
 
     public Product() {
     }
@@ -39,7 +36,7 @@ public class Product {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -74,4 +71,20 @@ public class Product {
     public void setStock(int stock) {
         this.stock = stock;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
 }

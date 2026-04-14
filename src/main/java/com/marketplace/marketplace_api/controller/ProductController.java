@@ -2,6 +2,7 @@ package com.marketplace.marketplace_api.controller;
 
 import com.marketplace.marketplace_api.dto.ProductDTO;
 import com.marketplace.marketplace_api.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,16 +28,16 @@ public class ProductController {
     }
 
     @PostMapping
-    public ProductDTO createProduct(@RequestBody ProductDTO productDTO){
+    public ProductDTO createProduct(@Valid @RequestBody ProductDTO productDTO){
         return productService.createProduct(productDTO);
     }
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable("id") Long id){
-        productService.deleteProduct(id);
+    public void deleteProduct(@PathVariable("id") Long id, @RequestParam Long userId ){
+        productService.deleteProduct(id, userId);
     }
 
     @PutMapping("/{id}")
-    public ProductDTO updateProduct(@PathVariable("id") Long id, @RequestBody ProductDTO productDTO){
+    public ProductDTO updateProduct(@Valid @PathVariable("id") Long id, @RequestBody ProductDTO productDTO){
         return productService.updateProduct(id, productDTO);
     }
 
